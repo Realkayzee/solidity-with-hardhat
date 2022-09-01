@@ -1,6 +1,5 @@
 require("dotenv").config({path: ".env"});
 import "@nomiclabs/hardhat-ethers";
-import "@nomiclabs/hardhat-etherscan";
 
 
 
@@ -9,15 +8,26 @@ const GOERLI_API_URL = process.env.ALCHEMY_GOERLI_API_URL;
 
 const PRIVATE = process.env.PRIVATE_KEY;
 
+const ROPSTEN_URL_API = process.env.INFURA_ROPSTEN_API_URL;
+
+const MAINET_URL_API = process.env.MAINNET_API_URL;
+
 
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    hardhat: {},
+    hardhat: {
+      forking: {
+        url: MAINET_URL_API,
+      }
+    },
     goerli: {
       url: GOERLI_API_URL,
       accounts: [PRIVATE],
+    },
+    ropsten: {
+      url: ROPSTEN_URL_API,
+      accounts: [PRIVATE]
     }
   }
-};
-//0x9DC1f831FA2cb438C07e1a3F3BA0261F7c72eDB8
+}

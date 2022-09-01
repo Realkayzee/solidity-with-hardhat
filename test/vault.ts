@@ -14,14 +14,14 @@ describe("Vault", function(){
 
         const contractBalance = await ethers.provider.getBalance(vault.address);
 
-        console.log(contractBalance);
+        console.log(`Contract Balance after deposit: ${contractBalance}`);
 
         const setWithdraw = await vault.withdraw();
         await setWithdraw.wait();
 
         const contractBalanceAfterWithdraw = await ethers.provider.getBalance(vault.address);
 
-        console.log(contractBalanceAfterWithdraw);
+        console.log(`Contract Balance after withdraw: ${contractBalanceAfterWithdraw}`);
 
         
     })
